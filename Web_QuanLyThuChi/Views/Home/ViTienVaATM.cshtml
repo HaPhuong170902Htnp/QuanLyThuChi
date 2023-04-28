@@ -1,0 +1,36 @@
+﻿@using Data_QLThuChi.Entities.thongke;
+
+@model IEnumerable<TaiChinhHienTai> 
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <div class="col-lg-3">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <span class="label label-primary float-right">VNĐ</span>
+                    <h5>Ví Tiền</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">@item.TienTrongVi.ToString("N0")</h1>
+                   
+                    <small>Số tiền trong ví</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <span class="label label-danger float-right">VNĐ</span>
+                    <h5>Tài Khoản ATM</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">@item.ATM.ToString("N0")</h1>
+
+                    <small>Tổng tiền trong ATM</small>
+                </div>
+            </div>
+        </div>
+    }
+}

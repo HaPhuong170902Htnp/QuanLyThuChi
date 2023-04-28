@@ -1,0 +1,138 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/login_two_columns.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Nov 2018 12:27:56 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login-QLTC</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/css/plugins/ladda/ladda-themeless.min.css" rel="stylesheet">
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <link href="~/Content/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="loginColumns animated fadeInDownBig">
+        <div class="row">
+
+            <div class="col-md-6">
+                <h2 class="font-bold">QUẢN LÝ THU CHI CÁ NHÂN</h2>
+            </div>
+            <div class="col-md-6">
+                <div class="ibox-content">
+                    <form class="m-t" role="form" action="Login" method="post">
+                        <div class="form-group">
+                            <input type="text" name="Uname" class="form-control" placeholder="Tên đăng nhập" required="">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="Pass" class="form-control" placeholder="Mật Khẩu" required="">
+                        </div>
+                        @*<button type="submit" class="btn btn-primary block full-width m-b">Đăng Nhập</button>*@
+                        @*<button class="ladda-button btn btn-primary block full-width m-b" data-style="expand-left" type="submit">Đăng Nhập</button>*@
+                        <section class="progress-demo">
+                            <button class="ladda-button btn btn-primary block full-width m-b" data-style="expand-right" type="submit">Đăng Nhập</button>
+                        </section>
+                        <div class="form-group">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+                        </div>
+                        <a href="~/Account/QuenMatKhau">
+                            <small>Quên mật khẩu?</small>
+                        </a>
+
+                        <p class="text-muted text-center">
+                            <small>Bạn chưa có tài khoản?</small>
+                        </p>
+                        <a class="btn btn-sm btn-white btn-block" href="~/Account/TaoTaiKhoan">Tạo Tài Khoản</a>
+                    </form>
+                    <p class="m-t">
+                        <small>QLTC web base on Bootstrap 4 &copy; 2023</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                Copyright MTA-Software
+            </div>
+            <div class="col-md-6 text-right">
+                <small>© 2022-2023</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="~/Content/js/jquery-3.1.1.min.js"></script>
+    <script src="~/Content/js/popper.min.js"></script>
+    <script src="~/Content/js/bootstrap.js"></script>
+    <script src="~/Content/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/Content/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="~/Content/js/inspinia.js"></script>
+    <script src="~/Content/js/plugins/pace/pace.min.js"></script>
+
+    <!-- Ladda -->
+    <script src="~/Content/js/plugins/ladda/spin.min.js"></script>
+    <script src="~/Content/js/plugins/ladda/ladda.min.js"></script>
+    <script src="~/Content/js/plugins/ladda/ladda.jquery.min.js"></script>
+
+    <script>
+
+    $(document).ready(function (){
+
+        // Bind normal buttons
+        Ladda.bind( '.ladda-button',{ timeout: 40000 });
+
+        // Bind progress buttons and simulate loading progress
+        Ladda.bind( '.progress-demo .ladda-button',{
+            callback: function( instance ){
+                var progress = 0;
+                var interval = setInterval( function(){
+                    progress = Math.min( progress + Math.random() * 0.1, 1 );
+                    instance.setProgress( progress );
+
+                    if( progress === 1 ){
+                        instance.stop();
+                        clearInterval( interval );
+                    }
+                }, 2000 );
+            }
+        });
+
+
+        var l = $( '.ladda-button-demo' ).ladda();
+
+        l.click(function(){
+            // Start loading
+            l.ladda( 'start' );
+
+            // Timeout example
+            // Do something in backend and then stop ladda
+            setTimeout(function(){
+                l.ladda('stop');
+            },50000)
+
+
+        });
+
+    });
+
+    </script>
+
+</body>
+
+
+
+</html>

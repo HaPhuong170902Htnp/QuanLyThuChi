@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs-->
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Trang chủ</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <strong>Trang Chủ</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInDown">
+    <div class="row">
+        @{Html.RenderAction("TongThuChiThangNay", "Home");}
+        @{Html.RenderAction("ViTienVaATM", "Home");}
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Phân Tích Các Khoản Chi Tháng: @Session["ThoigianphantichthuView"] (Đơn vị: nghìn đồng)</h5>
+                </div>
+                <div class="ibox-content">
+                    <div>
+                        <canvas id="doughnutChart1" height="120"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Phân Tích Các Khoản Thu Tháng: @Session["ThoigianphantichthuView"] (Đơn vị: nghìn đồng)</h5>
+                </div>
+                <div class="ibox-content">
+                    <div>
+                        <canvas id="doughnutChart2" height="120"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Biểu đồ thống kê thu chi</h5>
+                </div>
+                <div class="ibox-content">
+                    <div>
+                        <canvas id="barChart" height="140"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
